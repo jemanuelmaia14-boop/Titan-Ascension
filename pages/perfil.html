@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Perfil</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<div class="sidebar">
+    <h1>TITAN</h1>
+    <p>ASCENSION</p>
+
+    <a href="../index.html">🏠 Dashboard</a>
+    <a href="missoes.html">📜 Missões</a>
+    <a href="habilidades.html">🚀 Habilidades</a>
+    <a href="atributos.html">⚔️ Atributos</a>
+    <a href="perfil.html">👤 Perfil</a>
+    <a href="classes.html">⚔️ Classes</a>
+    <a href="loja.html">🛒 Loja</a>
+    <a href="conquistas.html">🏆 Conquistas</a>
+    <a href="configuracoes.html">⚙️ Configurações</a>
+</div>
+
+<main class="content">
+
+<h2>👤 PERFIL DO JOGADOR</h2>
+
+<div class="card perfil-card">
+    <div class="foto-perfil" id="previewFoto">👤</div>
+
+    <div>
+        <h3>Personalização</h3>
+
+        <label>Nome do jogador</label>
+        <input type="text" id="nomeInput" placeholder="Digite seu nome">
+
+        <label>Foto de perfil</label>
+        <input type="file" id="fotoInput" accept="image/*">
+
+        <button onclick="salvarPerfil()">Salvar Perfil</button>
+    </div>
+</div>
+
+<div class="card">
+    <h3>Status Atual</h3>
+    <p>Classe: <span id="classePerfil">Recruta</span></p>
+    <p>Título: Titã em Ascensão</p>
+    <p>Nível: <span id="nivelPerfil">1</span></p>
+</div>
+
+<div class="card">
+    <h3>🎁 Baús</h3>
+    <div id="bausPerfil">
+        <p>Nenhum baú disponível.</p>
+    </div>
+</div>
+
+<div class="card">
+    <h3>🎒 Inventário Visual</h3>
+    <div id="inventarioPerfil">
+        <p>Nenhum item comprado ainda.</p>
+    </div>
+</div>
+
+</main>
+
+<script src="../script.js"></script>
+
+<script>
+const classePerfil = localStorage.getItem("classe") || "Recruta";
+const nivelPerfil = localStorage.getItem("nivel") || 1;
+
+document.getElementById("classePerfil").innerText = classePerfil;
+document.getElementById("nivelPerfil").innerText = nivelPerfil;
+</script>
+
+</body>
+</html>

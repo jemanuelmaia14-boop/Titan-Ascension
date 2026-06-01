@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Configurações</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<div class="sidebar">
+    <h1>TITAN</h1>
+    <p>ASCENSION</p>
+
+    <a href="../index.html">🏠 Dashboard</a>
+    <a href="missoes.html">📜 Missões</a>
+    <a href="habilidades.html">🚀 Habilidades</a>
+    <a href="atributos.html">⚔️ Atributos</a>
+    <a href="perfil.html">👤 Perfil</a>
+    <a href="classes.html">⚔️ Classes</a>
+    <a href="loja.html">🛒 Loja</a>
+    <a href="conquistas.html">🏆 Conquistas</a>
+    <a href="configuracoes.html">⚙️ Configurações</a>
+</div>
+
+<main class="content">
+
+<h2>⚙️ CONFIGURAÇÕES</h2>
+
+<div class="card">
+    <h3>🎨 Aparência</h3>
+    <button onclick="ativarTemaEscuro()">Modo Escuro</button>
+    <button onclick="ativarTemaClaro()">Modo Claro</button>
+</div>
+
+<div class="card">
+    <h3>🌎 Idioma</h3>
+    <p>Idioma atual: Português</p>
+    <button>Português</button>
+    <button>Inglês em breve</button>
+</div>
+
+<div class="card">
+    <h3>🔐 Privacidade</h3>
+    <p>Seus dados estão salvos apenas neste navegador usando LocalStorage.</p>
+</div>
+
+<div class="card">
+    <h3>🧹 Resetar Progresso</h3>
+    <p>Isso apaga XP, nível, moedas, classe, perfil e inventário.</p>
+    <button onclick="resetarProgresso()">Resetar Tudo</button>
+</div>
+
+</main>
+
+<script src="../script.js"></script>
+</body>
+</html>

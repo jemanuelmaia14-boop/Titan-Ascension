@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classes - Titan Ascension</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<div class="sidebar">
+    <h1>TITAN</h1>
+    <p>ASCENSION</p>
+
+    <a href="../index.html">🏠 Dashboard</a>
+    <a href="missoes.html">📜 Missões</a>
+    <a href="habilidades.html">🚀 Habilidades</a>
+    <a href="atributos.html">⚔️ Atributos</a>
+    <a href="perfil.html">👤 Perfil</a>
+    <a href="classes.html">⚔️ Classes</a>
+    <a href="loja.html">🛒 Loja</a>
+    <a href="conquistas.html">🏆 Conquistas</a>
+    <a href="configuracoes.html">⚙️ Configurações</a>
+</div>
+
+<main class="content">
+
+    <h2>⚔️ ESCOLHA SUA CLASSE</h2>
+
+    <div class="card">
+        <h3>🛡️ Guardião</h3>
+        <p>Mestre da força, resistência e energia.</p>
+        <button onclick="escolherClasse('Guardião')">
+            Escolher Classe
+        </button>
+    </div>
+
+    <div class="card">
+        <h3>🧠 Sábio</h3>
+        <p>Mestre do conhecimento, leitura e aprendizado.</p>
+        <button onclick="escolherClasse('Sábio')">
+            Escolher Classe
+        </button>
+    </div>
+
+    <div class="card">
+        <h3>🔥 Estrategista</h3>
+        <p>Mestre da disciplina, foco e produtividade.</p>
+        <button onclick="escolherClasse('Estrategista')">
+            Escolher Classe
+        </button>
+    </div>
+
+    <div class="card">
+        <h3>👑 Imperador</h3>
+        <p>Mestre da prosperidade, liderança e riqueza.</p>
+        <button onclick="escolherClasse('Imperador')">
+            Escolher Classe
+        </button>
+    </div>
+
+    <div class="card">
+        <h3>📋 Classe Atual</h3>
+        <p id="classeAtual">
+            Recruta
+        </p>
+    </div>
+
+</main>
+
+<script src="../script.js"></script>
+
+<script>
+const classeAtual = localStorage.getItem("classe") || "Recruta";
+
+if(document.getElementById("classeAtual")){
+    document.getElementById("classeAtual").innerText = classeAtual;
+}
+</script>
+
+</body>
+</html>

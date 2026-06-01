@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Missões</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<div class="sidebar">
+    <h1>TITAN</h1>
+    <p>ASCENSION</p>
+
+    <a href="../index.html">🏠 Dashboard</a>
+    <a href="missoes.html">📜 Missões</a>
+    <a href="habilidades.html">🚀 Habilidades</a>
+    <a href="atributos.html">⚔️ Atributos</a>
+    <a href="perfil.html">👤 Perfil</a>
+    <a href="classes.html">⚔️ Classes</a>
+    <a href="loja.html">🛒 Loja</a>
+    <a href="conquistas.html">🏆 Conquistas</a>
+    <a href="configuracoes.html">⚙️ Configurações</a>
+</div>
+
+<main class="content">
+
+<h2>📜 MISSÕES DO SISTEMA</h2>
+
+<div class="card missao-card">
+    <h3>📚 Ler 20 páginas</h3>
+    <p>Recompensa: +10 XP | +1 Conhecimento | +10 XP Leitura | +5 🪙</p>
+    <input id="prova-leitura" type="file" accept="image/*">
+    <button onclick="concluirMissaoComProva('leitura', 'prova-leitura', 10, 'conhecimento', 'Leitura', 10, 5)">
+        Missão Concluída
+    </button>
+</div>
+
+<div class="card missao-card">
+    <h3>💪 Fazer treino</h3>
+    <p>Recompensa: +15 XP | +1 Força | +15 XP Academia | +10 🪙</p>
+    <input id="prova-treino" type="file" accept="image/*">
+    <button onclick="concluirMissaoComProva('treino', 'prova-treino', 15, 'forca', 'Academia', 15, 10)">
+        Missão Concluída
+    </button>
+</div>
+
+<div class="card missao-card">
+    <h3>🔥 Ficar 30 min sem redes sociais</h3>
+    <p>Recompensa: +20 XP | +1 Disciplina | +5 XP Leitura | +15 🪙</p>
+    <input id="prova-foco" type="file" accept="image/*">
+    <button onclick="concluirMissaoComProva('foco', 'prova-foco', 20, 'disciplina', 'Leitura', 5, 15)">
+        Missão Concluída
+    </button>
+</div>
+
+<div class="card missao-card">
+    <h3>💧 Beber água</h3>
+    <p>Recompensa: +5 XP | +1 Energia | +5 XP Academia | +3 🪙</p>
+    <input id="prova-agua" type="file" accept="image/*">
+    <button onclick="concluirMissaoComProva('agua', 'prova-agua', 5, 'energia', 'Academia', 5, 3)">
+        Missão Concluída
+    </button>
+</div>
+
+<div id="missaoClasse"></div>
+
+</main>
+
+<script src="../script.js"></script>
+
+<script>
+function dataDeHoje(){
+    return new Date().toISOString().split("T")[0];
+}
+
+function concluirMissaoComProva(idMissao, idInput, xp, atributo, habilidade, xpHabilidade, moedas){
+    const input = document.getElementById(idInput);
+    const hoje = dataDeHoje();
+    const chave = "missao_" + idMissao + "_" + hoje;
+
+    if(localStorage.getItem(chave)){
+        alert("⛔ Essa missão já foi concluída hoje.");
+        return;
+    }
+
+    if(!input.files || input.files.length === 0){
+        alert("📸 Envie uma imagem como prova antes de concluir a missão.");
+        return;
+    }
+
+    const reader = new FileReader();
+
+    reader.onload = function(){
+        localStorage.setItem("prova_" + idMissao + "_" + hoje, reader.result);
+        localStorage.setItem(chave, "concluida");
+
+        completarMissao(xp, atributo);
+        ganharHabilidade(habilidade, xpHabilidade);
+        ganharMoedas(moedas);
+
+        alert("✅ Missão concluída com prova enviada!");
+        location.reload();
+    };
+
+    reader.readAsDataURL(input.files[0]);
+}
+
+const classe = localStorage.getItem("classe");
+const area = document.getElementById("missaoClasse");
+
+if(area){
+    if(!classe || classe === "Recruta"){
+        area.innerHTML = `
+        <div class="card">
+            <h3>🔒 Missão de Classe Bloqueada</h3>
+            <p>Escolha uma classe para desbloquear uma missão exclusiva.</p>
+            <a href="classes.html">Ir para Classes</a>
+        </div>
+        `;
+    }
+
+    if(classe === "Guardião"){
+        area.innerHTML = `
+        <div class="card missao-card">
+            <h3>🛡️ Missão do Guardião: Treino de Resistência</h3>
+            <p>Recompensa: +25 XP | +2 Força | +20 XP Academia | +20 🪙</p>
+            <input id="prova-guardiao" type="file" accept="image/*">
+            <button onclick="concluirMissaoComProva('guardiao', 'prova-guardiao', 25, 'forca', 'Academia', 20, 20)">
+                Missão de Classe Concluída
+            </button>
+        </div>
+        `;
+    }
+
+    if(classe === "Sábio"){
+        area.innerHTML = `
+        <div class="card missao-card">
+            <h3>🧠 Missão do Sábio: Estudo Profundo</h3>
+            <p>Recompensa: +25 XP | +2 Conhecimento | +20 XP Leitura | +20 🪙</p>
+            <input id="prova-sabio" type="file" accept="image/*">
+            <button onclick="concluirMissaoComProva('sabio', 'prova-sabio', 25, 'conhecimento', 'Leitura', 20, 20)">
+                Missão de Classe Concluída
+            </button>
+        </div>
+        `;
+    }
+
+    if(classe === "Estrategista"){
+        area.innerHTML = `
+        <div class="card missao-card">
+            <h3>🔥 Missão do Estrategista: 1 Hora de Foco Total</h3>
+            <p>Recompensa: +25 XP | +2 Disciplina | +20 XP Programação | +20 🪙</p>
+            <input id="prova-estrategista" type="file" accept="image/*">
+            <button onclick="concluirMissaoComProva('estrategista', 'prova-estrategista', 25, 'disciplina', 'Programacao', 20, 20)">
+                Missão de Classe Concluída
+            </button>
+        </div>
+        `;
+    }
+
+    if(classe === "Imperador"){
+        area.innerHTML = `
+        <div class="card missao-card">
+            <h3>👑 Missão do Imperador: Criar uma Ideia de Negócio</h3>
+            <p>Recompensa: +25 XP | +2 Disciplina | +20 XP Programação | +20 🪙</p>
+            <input id="prova-imperador" type="file" accept="image/*">
+            <button onclick="concluirMissaoComProva('imperador', 'prova-imperador', 25, 'disciplina', 'Programacao', 20, 20)">
+                Missão de Classe Concluída
+            </button>
+        </div>
+        `;
+    }
+}
+</script>
+
+</body>
+</html>
